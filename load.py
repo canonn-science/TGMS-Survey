@@ -57,19 +57,18 @@ def submitTCMS():
 def plugin_app(parent):
 
     this.parent = parent
-    #create a new frame as a containier for the status
-    this.frame = tk.Frame(parent)
     
     
-    this.buttonbar = tk.Frame(this.frame)
+    
+    this.frame=tk.Frame(parent)
+    #this.buttonbar = tk.Frame(parent)
     
     #We want three columns, label, text, button
     this.frame.columnconfigure(1, weight=1)
+      
+    this.status = tk.Button(this.frame, text="Submit TGMS Report", command=submitTCMS)
+    this.status.grid(row = 0, column = 0)
     
-    #this.label = tk.Label(parent, text="TCMS:")
-    this.status = tk.Button(this.frame, anchor=tk.W, text="Submit TGMS Report", command=submitTCMS)
-    this.status.grid(row = 0, column = 1)
-    #this.label.grid_remove()
     this.status.grid_remove()
     
     return (this.frame)
@@ -88,7 +87,7 @@ def journal_entry(cmdr, is_beta, system, station, entry, state):
     # startup_stats(cmdr)
 
     #this.label.grid()
-    this.status.grid()
+    
     
     if ('Body' in entry):
         this.body_name = entry['Body']    
@@ -163,6 +162,7 @@ def journal_entry_wrapper(cmdr, is_beta, system, station, entry, state,x,y,z,bod
     codex.submit( cmdr, is_beta, system, x,y,z, entry, body,lat,lon)
     
     if system and cmdr:
+        this.status.grid()
         this.system=system
         this.cmdr=cmdr
     
