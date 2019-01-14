@@ -74,7 +74,10 @@ def plugin_app(parent):
     
     return (this.frame)
     
-    this.frame = tk.Frame(parent)    
+
+    
+
+    
    
 def journal_entry(cmdr, is_beta, system, station, entry, state):
     '''
