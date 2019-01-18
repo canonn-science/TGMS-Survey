@@ -49,10 +49,11 @@ def plugin_start(plugin_dir):
     return 'TGMS'
     
 def submitTCMS():
-    url="https://docs.google.com/forms/d/e/1FAIpQLSfXfnQ9AqxTEfjoucyjQQHWbMg3T4ClnMUlJszC7Ll0rVFzUg/viewform?usp=pp_url"
+    url="https://docs.google.com/forms/d/e/1FAIpQLSfXfnQ9AqxTEfjoucyjQQHWbMg3T4ClnMUlJszC7Ll0rVFzUg/formResponse?usp=pp_url"
     url+="&entry.2011446833="+quote_plus(this.cmdr);
     url+="&entry.350770152="+quote_plus(this.system)
-    webbrowser.open(url)
+    Reporter(url).start() 
+    this.status.grid_remove()
     
 def plugin_app(parent):
 
@@ -87,6 +88,7 @@ def journal_entry(cmdr, is_beta, system, station, entry, state):
     # startup_stats(cmdr)
 
     #this.label.grid()
+    
     
     
     if ('Body' in entry):
@@ -161,8 +163,10 @@ def journal_entry_wrapper(cmdr, is_beta, system, station, entry, state,x,y,z,bod
     #Strapi Codex Entry
     codex.submit( cmdr, is_beta, system, x,y,z, entry, body,lat,lon)
     
-    if system and cmdr:
+    if entry["event"] in ('FSDJump',"Location"):
         this.status.grid()
+    
+    if system and cmdr:
         this.system=system
         this.cmdr=cmdr
     
