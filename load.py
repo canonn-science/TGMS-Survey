@@ -163,7 +163,7 @@ def journal_entry_wrapper(cmdr, is_beta, system, station, entry, state,x,y,z,bod
     #Strapi Codex Entry
     codex.submit( cmdr, is_beta, system, x,y,z, entry, body,lat,lon)
     
-    if entry["event"] in ('FSDJump',"Location"):
+    if entry["event"] in ('FSDJump',"Location") or 'FSS' in entry["event"]:
         this.status.grid()
     
     if system and cmdr:
