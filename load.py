@@ -105,6 +105,10 @@ def journal_entry(cmdr, is_beta, system, station, entry, state):
     
     if system:
         x,y,z=edsmGetSystem(system)
+    else:
+        x=None
+        y=None
+        z=None
     
     return journal_entry_wrapper(commander, is_beta, system, station, entry, state,x,y,z,this.body_name,this.nearloc['Latitude'],this.nearloc['Longitude'])       
   
