@@ -32,6 +32,8 @@ def plugin_prefs(parent, cmdr, is_beta):
     frame = nb.Frame(parent)
     frame.columnconfigure(3, weight=1)
     nb.Checkbutton(frame, text="I want to be anonymous", variable=this.anon).grid(row = 1, column = 0,sticky=tk.W)
+    
+    return frame
 
     
 def prefs_changed(cmdr, is_beta):
